@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:ital,opsz,wght@0,14..32,800;1,14..32,800&display=swap");
+:root {
+  --main-color: #8fd14f;
+  --secondary-color: #ff6600;
+  --accent-color: #292632;
+  --greyish-color: #676767;
+  --transparent-color: rgba(217, 217, 217, 0.42);
+  --whitish-color: #f5f5f5;
+
+  /* Shades of the colors */
+  --main-color-shade: #6c9e3b;
+  --secondary-color-shade: #e65d02;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", sans-serif;
+}
+header {
+  width: 100%;
+  height: 100px;
+  background: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 70px;
+}
+header h2 {
+  width: 90px;
+  height: 90px;
+}
+header h2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+#menu a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  transition: all 0.3s;
+}
+#menu a:hover {
+  color: var(--secondary-color-shade);
+}
+main {
+  /* height: calc(100vh - 130px); */
+  height: 880px;
+  background: url("../images/background_homepage.png");
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+main.active {
+  background: var(--whitish-color);
+  height: 1080px;
+}
+#search-action-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 25px;
+  /* background: yellow; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+#diet-type-buttons {
+  flex-basis: 30%;
+  display: flex;
+  gap: 10px 13px;
+  flex-wrap: wrap;
+}
+#diet-type-buttons button {
+  background: var(--main-color);
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 15px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+#diet-type-buttons button.not-selected {
+  opacity: 0.5;
+}
+#diet-type-buttons button:hover {
+  background: var(--main-color-shade);
+}
+#search-bar {
+  flex-basis: 500px;
+  flex-grow: 1;
+  height: 60px;
+  position: relative;
+}
+#search-bar .search-icon {
+  position: absolute;
+  top: 60%;
+  left: 5px;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+#search-bar input#search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 60px;
+  font-size: 1.5rem;
+  padding: 13px;
+  padding-left: 50px;
+  border-radius: 2.25rem;
+  background: var(--transparent-color);
+  border: 1px solid var(--greyish-color);
+  outline: none;
+}
+#search-bar input#go {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--accent-color);
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#search-bar input#go:hover {
+  background: var(--greyish-color);
+  color: white;
+  border: 1px solid white;
+}
+#search-bar input::placeholder {
+  color: black;
+}
+#select-time-buttons {
+  flex-basis: 30%;
+}
+#select-time-buttons button {
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  border-radius: 1.5rem;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#select-time-buttons button.selected {
+  color: var(--whitish-color);
+  background: var(--secondary-color);
+}
+#landing-page-text {
+  position: absolute;
+  left: 50px;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+/* Removing the landing page text when the search query is made*/
+main.active #landing-page-text {
+  display: none;
+}
+#landing-page-text h1 {
+  width: 600px;
+  font-family: "DM Serif Display";
+  font-size: 4rem;
+  color: var(--accent-color);
+}
+#landing-page-text p {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--accent-color);
+}
+#landing-page-text button {
+  background: var(--secondary-color);
+  font-size: 2rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  color: white;
+  padding: 21px 54px;
+  border-radius: 54px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 50px;
+}
+#landing-page-text button:hover {
+  background: var(--secondary-color-shade);
+}
+footer {
+  background: var(--accent-color);
+  padding: 20px 50px;
+}
+footer p {
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+/* Results will be displayed only when the search query is made by the user*/
+#results {
+  display: none;
+}
+
+main.active #results {
+  display: block;
+  position: absolute;
+  top: 130px;
+  left: 50px;
+  width: 95%;
+}
+#results h1 {
+  font-family: "DM Serif Display";
+  color: var(--accent-color);
+  font-size: 2.5rem;
+}
+p.results-count {
+  font-family: "Inter", sans-serif;
+  color: var(--accent-color);
+  font-weight: 300;
+}
+.recipes-container {
+  width: 100%;
+  height: 750px;
+  padding: 20px 70px;
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 42px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+.recipes-container .item {
+  width: 550px;
+  height: 135px;
+  border-radius: 11px;
+  box-shadow: 7px 7px 0 0 var(--main-color);
+  display: flex;
+  overflow: hidden;
+}
+.recipes-container .item .imgBox {
+  width: 30%;
+  height: 100%;
+}
+.recipes-container .item .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recipes-container .item .recipe-information {
+  width: 70%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.recipes-container .item .recipe-information .nav-buttons {
+  font-size: 0.75rem;
+  display: flex;
+  gap: 20px;
+}
+.recipes-container .item .recipe-information .nav-buttons button {
+  font-size: 1.25rem;
+  padding: 5px;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.recipes-container .item .recipe-information .nav-buttons button:hover {
+  transform: scale(1.1);
+  transform-origin: center center;
+}
+.recipes-container .item .recipe-information .nav-buttons button.addRecipe {
+  background: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+.recipes-container .item .recipe-information .nav-buttons button.makeDish {
+  background: var(--accent-color);
+  color: var(--whitish-color);
+}
+
+.recipes-container .item .recipe-information span {
+  font-weight: 600;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.pagination .page-number {
+  font-size: 1.25rem;
+  padding: 5.5px 0;
+  height: 35px;
+  width: 35px;
+  text-align: center;
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+.pagination .page-number.active {
+  background: var(--secondary-color);
+  color: var(--whitish-color);
+}
