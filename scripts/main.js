@@ -14,6 +14,7 @@ function loadPage() {
   var recipeHeading = document.querySelector("#results h1");
   var querySpan = document.querySelector("#results h1 span");
   var resultsCount = document.querySelector(".results-count span");
+  var pagination = document.querySelector(".pagination");
 
   /* Selecting the diet type */
   for (var i = 0; i < dietBtns.length; i++) {
@@ -58,6 +59,7 @@ function loadPage() {
     recipeHeading.innerHTML = `Showing results for "<span>${searchedQuery}</span>"`;
     mainSection.classList.add("active");
     recipesContainer.innerHTML = "";
+    pagination.innerHTML = "";
     try {
       fetch(url)
         .then(function (response) {
@@ -70,8 +72,37 @@ function loadPage() {
           console.log(data);
           var results = data.results;
           var resultNums = data.totalResults;
-          //   console.log(results);
+
+          /* Calculating the number of pages */
+          var numOfPages = resultNums / 8;
+
+          if (resultNums % 8 !== 0) {
+            numOfPages += 1;
+          }
+
+          /* Adding the result count to the webpage */
           resultsCount.innerHTML = resultNums;
+
+          /* Adding page navigation to the webpage */
+          for (var i = 1; i <= numOfPages; i++) {
+            console.log(`This is the ${i} page.`);
+            var pageElm = `<div class="page-number">${i}</div>`;
+            pagination.innerHTML += pageElm;
+          }
+
+          /* Adding active class on the first page by default */
+          var firstPage = pagination.querySelector(".page-number");
+          firstPage.classList.add("active");
+
+          /* Changing the recipe page when any number is clicked */
+          var pages = pagination.querySelectorAll(".page-number");
+
+          for (var i = 0; i < pages.length; i++) {
+            pages[i].onclick = function () {
+              console.log(this);
+            };
+          }
+
           /* Throwing an error if the recipes for the searched term are unavailable */
           if (data.results < 1) {
             recipeHeading.innerHTML = `Could not find any results for "${searchedQuery}"`;
